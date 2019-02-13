@@ -1,3 +1,14 @@
-<p>
-  login works!
-</p>
+<form (ngSubmit)="onSubmitHandler()" #loginForm="ngForm" class="mx-5 border border-secondary p-3" novalidate>
+  <h6 class="login-title">Please, enter your credentials to login</h6>
+  <div class="form-group">
+      <input [(ngModel)]="checkLogin.username" name="username" type="text" class="form-control" placeholder="Enter username" #username="ngModel" required>
+      <div class="invalid-feedback" [hidden]="username.valid || username.pristine">* Username is required</div>
+    </div>
+  <div class="form-group">
+      <input [(ngModel)]="checkLogin.password" name="password" type="password" class="form-control" placeholder="Enter password" #password="ngModel" required>
+      <div class="invalid-feedback" [hidden]="password.valid || password.pristine">* Password is required</div>
+  </div>
+  <div class="mb-2 d-flex justify-content-end">
+      <button [disabled]="loginForm.invalid" class="submit btn btn-outline-info btn-sm">Login</button>
+  </div>
+</form>

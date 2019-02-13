@@ -8,6 +8,6 @@ export class AuthService {
   constructor() { }
 
   isAuth() {
-    return localStorage.getItem('token') ? true : false;
+    return localStorage.getItem('username') && localStorage.getItem('password') ? true : false;
   }
 }

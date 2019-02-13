@@ -19,11 +19,6 @@ export class UserInfoComponent implements OnInit {
     const id = this.route.snapshot.params['id'];
     this.usersService.getUser(id).subscribe((user) => {
       this.user = user;
-      console.log(this.user);
     });
-  }
-
-  navigateExmpl() {
-    this.router.navigate(['/users']);
   }
 }

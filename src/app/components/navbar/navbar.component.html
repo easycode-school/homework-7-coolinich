@@ -8,5 +8,8 @@
     <li class="nav-item ml-3">
       <a class="nav-link" routerLink="/about" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">About</a>
     </li>
+    <li class="nav-item ml-3">
+      <a class="nav-link" [hidden]="!authService.isAuth()" (click)="logoutHandler()" routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Logout</a>
+    </li>
   </ul>
 </nav>
