@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+// import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 import { UsersService } from '../../services/users.service';
 import { User } from '../../interfaces/User';
 
@@ -18,7 +20,8 @@ export class UserEditComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private messageService: MessageService
   ) { }
 
   ngOnInit() {
@@ -31,8 +34,10 @@ export class UserEditComponent implements OnInit {
   // Submit changes in User data, navigation back to Users list
   onSubmitHandler() {
     this.usersService.editUser(this.user).subscribe((user) => {
-      this.router.navigate(['/users']);
+      this.messageService.add({severity: 'success', summary: 'Congratulations!', detail: 'Changes were applied!'});
+      setTimeout(() => this.router.navigate(['/users']), 3000);
     },
-    (err) => console.log(err));
+    (err) => this.messageService.add({severity: 'error', summary: 'Something went wrong', detail: err})
+    );
   }
 }
